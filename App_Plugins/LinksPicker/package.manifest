@@ -1,0 +1,29 @@
+﻿{
+  propertyEditors: 
+  [
+    {
+		name: "Links Picker",
+		alias: "REM.LinksPicker",
+		editor: {
+			view: "~/App_Plugins/LinksPicker/LinksPicker.html",
+			valueType: "JSON"
+		},
+		prevalues: {
+			fields:[
+				{
+					label: "Maximum number of items",
+					description: "",
+					key: "max",
+					view: "textstring"
+				}
+			]
+		}
+    }
+  ],
+  javascript: [
+    "~/App_Plugins/LinksPicker/LinksPicker.controller.js"
+  ],
+  css:[
+	"~/App_Plugins/LinksPicker/LinksPicker.css"
+  ]
+}
