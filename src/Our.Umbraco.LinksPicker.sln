@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.LinksPicker", "Our.Umbraco.LinksPicker\Our.Umbraco.LinksPicker.csproj", "{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7228C2E1-B2AC-4DBC-82C5-14B5FEE7F142}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\BuildRelease.ps1 = ..\build\BuildRelease.ps1
+		..\build\Our.Umbraco.LinksPicker.nuspec = ..\build\Our.Umbraco.LinksPicker.nuspec
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

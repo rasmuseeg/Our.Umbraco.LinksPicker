@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Our.Umbraco.LinksPicker</id>
+    <title>Our.Umbraco.LinksPicker</title>
+    <version>0.0.0.0</version>
+    <authors>Rasmus E. Møller</authors>
+    <description>Simple way to edit related links</description>
+    <summary>Simple way to edit related links</summary>
+    <language>en-US</language>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/rasmuseeg/Our.Umbraco.LinksPicker/</projectUrl>
+    <tags>plugin link related links umbraco</tags>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <dependency id="UmbracoCms.Core" version="7.2.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="App_Plugins\**\*.*" target="content\App_Plugins" />
+    <file src="*.dll" target="lib\net45" />
+    <file src="*.pdb" target="lib\net45" />
+  </files>
+</package>

@@ -1,0 +1,36 @@
+<div class="umb-urlpicker" ng-controller="Our.LinksPickerController">
+    <ul class="unstyled list-icons" ui-sortable ng-model="model.value">
+        <li ng-repeat="link in model.value">
+            <i class="icon icon-navigation handle"></i>
+
+            <a href="#" prevent-default="" ng-click="remove($index)" class="ng-binding">
+                <i class="icon icon-delete red hover-show"></i>
+                <!-- Media -->
+                <span ng-if="link.id > 0 && link.isMedia">
+                    <i class="icon icon-umb-media hover-hide"></i>
+                </span>
+                <!-- Content -->
+                <span ng-if="link.id > 0 && !link.isMedia">
+                    <i class="icon icon-umb-content hover-hide"></i>
+                </span>
+                <!-- Link -->
+                <span ng-if="link.id <= 0">
+                    <i class="icon icon-link hover-hide"></i>
+                </span>
+                {{link.name}}
+            </a>
+
+            <div>
+                <small><a href="#" prevent-default ng-click="edit($index)"><localize key="edit">Edit</localize></a></small>
+            </div>
+        </li>
+    </ul>
+    <ul class="unstyled list-icons" ng-if="showAdd()">
+        <li>
+            <i class="icon icon-add blue"></i>
+            <a href="#" ng-click="add()" prevent-default>
+                <localize key="general_add">Add</localize>
+            </a>
+        </li>
+    </ul>
+</div>

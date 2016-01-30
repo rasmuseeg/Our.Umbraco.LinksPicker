@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Our.Umbraco.Picture</id>
+    <title>Our.Umbraco.Picture</title>
+    <version>0.0.0.0</version>
+    <authors>Rasmus Eeg Moeller</authors>
+    <description>A extension library for generating HTML5 Picture element</description>
+    <summary>A extension library for generating HTML5 Picture element</summary>
+    <language>en-US</language>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/rasmuseeg/Our.Umbraco.Picture/</projectUrl>
+    <tags>plugin picture responsive image umbraco</tags>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+    
+      <dependency id="UmbracoCms.Core" version="7.2.4" />
+      
+    </dependencies>
+  </metadata>
+  <files>
+    
+    <file src="*.dll" target="lib\net45" />
+    <file src="*.pdb" target="lib\net45" />
+    
+  </files>
+</package>

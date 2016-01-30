@@ -1,0 +1,12 @@
+﻿.umb-urlpicker li a:hover .hover-hide, 
+.umb-urlpicker li a .hover-show{
+    display: none;
+}
+
+.umb-urlpicker li a:hover .hover-show{
+      display: inline-block;
+}
+
+.umb-urlpicker small a{
+    color: #555;
+}
