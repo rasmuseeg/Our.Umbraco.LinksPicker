@@ -1,21 +1,26 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 
 namespace Our.Umbraco.LinksPicker.Models {
-    public class LinksPicker : List<LinksPickerItem>
+    public class LinksPickerModel : List<LinksPickerItem>
     {
-        public LinksPicker() 
+        public LinksPickerModel() 
             : base() { }
 
-        public LinksPicker(string value) 
+        public LinksPickerModel(string value) 
             : base() {
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException("value", "Value cannot be null or empty.");
-
+            try {
                 var links = JsonConvert.DeserializeObject<List<LinksPickerItem>>(value);
                 base.AddRange(links);
+            } catch (Exception ex) {
+                LogHelper.Error<LinksPickerModel>("Faile to deserialize: " + value, ex);
+            }
+            
         }
     }
 
@@ -37,5 +42,9 @@ namespace Our.Umbraco.LinksPicker.Models {
         public bool IsMedia { get; set; }
 
         public IPublishedContent Content { get; set; }
+
+        public LinksPickerItem() {
+            Content = null;
+        }
     }
 }

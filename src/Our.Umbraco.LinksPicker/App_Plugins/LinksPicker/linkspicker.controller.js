@@ -10,7 +10,6 @@ angular.module("umbraco")
         $scope.add = function () {
             dialogService.linkPicker({
                 callback: function (e) {
-                    console.log(e);
                     // set model
                     $scope.model.value.push({
                         id: e.id || 0,

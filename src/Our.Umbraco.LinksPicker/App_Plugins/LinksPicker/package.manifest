@@ -2,6 +2,7 @@
   propertyEditors: 
   [
     {
+        id: "66157F21-8BAB-4807-AC2E-33F48221E053",
 		name: "Links Picker",
 		alias: "Our.LinksPicker",
 		editor: {

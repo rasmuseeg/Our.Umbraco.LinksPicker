@@ -7,16 +7,14 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Web;
 
-namespace Our.Umbraco.LinksPicker.PropertyConverters
-{
-    [PropertyValueType(typeof(Models.LinksPicker))]
+namespace Our.Umbraco.LinksPicker.PropertyConverters {
+    // Include complete namespace because of Umbraco.ModelsBuilder
+    [PropertyValueType(typeof(Our.Umbraco.LinksPicker.Models.LinksPickerModel))]
     [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Request)]
-    public class LinksPickerPropertyValueConverter : PropertyValueConverterBase
-    {
+    public class LinksPickerPropertyValueConverter : PropertyValueConverterBase {
         public UmbracoHelper umbHelper;
 
-        public LinksPickerPropertyValueConverter()
-        {
+        public LinksPickerPropertyValueConverter() {
             umbHelper = new UmbracoHelper(UmbracoContext.Current);
         }
 
@@ -29,8 +27,7 @@ namespace Our.Umbraco.LinksPicker.PropertyConverters
         /// <returns>
         /// The <see cref="bool"/>.
         /// </returns>
-        public override bool IsConverter(PublishedPropertyType propertyType)
-        {
+        public override bool IsConverter(PublishedPropertyType propertyType) {
             return propertyType.PropertyEditorAlias == "Our.LinksPicker";
         }
 
@@ -49,20 +46,17 @@ namespace Our.Umbraco.LinksPicker.PropertyConverters
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview)
-        {
-            if (source == null) return new Models.LinksPicker();
-            var sourceString = source.ToString();
+        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview) {
+            if (source == null || string.IsNullOrWhiteSpace(source as string)) return new Models.LinksPickerModel();
 
-            var links = JsonConvert.DeserializeObject<Models.LinksPicker>(sourceString);
+            string sourceString = source.ToString();
 
-            foreach (var link in links)
-            {
+            var links = JsonConvert.DeserializeObject<Models.LinksPickerModel>(sourceString);
+
+            foreach (var link in links) {
                 // If we've got a id, then it's internal
-                if(link.Id.HasValue && link.Id.Value > 0)
-                {
-                    try
-                    {
+                if (link.Id.HasValue && link.Id.Value > 0) {
+                    try {
                         link.Content = (
                             link.IsMedia
                             ? umbHelper.TypedMedia(link.Id)
@@ -70,9 +64,7 @@ namespace Our.Umbraco.LinksPicker.PropertyConverters
                         );
 
                         link.Url = link.Content.Url;
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         LogHelper.Error(this.GetType(), "Failed to map link with id: " + link.Id, e);
                     }
                 }
@@ -96,17 +88,14 @@ namespace Our.Umbraco.LinksPicker.PropertyConverters
         /// <returns>
         /// The <see cref="object"/>.
         /// </returns>
-        public override object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview)
-        {
-            if (source == null)
-                return new Models.LinksPicker();
+        public override object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview) {
+            if (source == null) return new Models.LinksPickerModel();
 
             // source should come from ConvertDataToSource and be a string (or null) already
-            return source ?? new Models.LinksPicker();
+            return source ?? new Models.LinksPickerModel();
         }
 
-        public override object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview)
-        {
+        public override object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview) {
             // source should come from ConvertDataToSource and be a string (or null) already
             throw new NotImplementedException();
         }
