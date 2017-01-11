@@ -1,21 +1,26 @@
 angular.module("umbraco")
   .controller("Our.LinksPickerController",
     function ($scope, dialogService, mediaHelper) {
-        // Convert old uComponent UrlPicker (URL, Content, Media) not upload
-        if(angular.isObject($scope.model.value)
-            && "Mode" in $scope.model.value
-            && "Title" in $scope.model.value
-            && "NodeId" in $scope.model.value
-            && "NewWindow" in $scope.model.value) {
-            var temp = $scope.model.value;
-            $scope.model.value = [];
-            $scope.model.value.push({
-                id: temp.NodeId || 0,
-                name: temp.Title,
-                url: temp.Url,
-                isMedia: temp.Mode == 3,
-                target: temp.NewWindow ? '_blank' : '_self',
+        /**
+         * Converts multiple uComponent UrlPicker item. URL, Content, Media
+         */
+        if (angular.isArray($scope.model.value)
+            && isUrlPickerItem($scope.model.value[0])) {
+            var items = [];
+            angular.forEach($scope.model.value, function (value, index) {
+                items.push(convertUrlPickerItem(value));
             });
+            $scope.model.value = items;
+        }
+
+        /**
+         * Converts single uComponent UrlPicker item
+         */
+        if(angular.isObject($scope.model.value)
+            && isUrlPickerItem($scope.model.value)) {
+            $scope.model.value = [];
+            var converted = convertUrlPickerItem($scope.model.value);
+            $scope.model.value.push(converted);
         }
   
         // make sure it's an array, else make one
@@ -72,4 +77,21 @@ angular.module("umbraco")
         $scope.remove = function ($index) {
             $scope.model.value.splice($index, 1);
         };
+
+        function isUrlPickerItem(obj) {
+            return "Mode" in $scope.model.value
+            && "Title" in $scope.model.value
+            && "NodeId" in $scope.model.value
+            && "NewWindow" in $scope.model.value;
+        }
+
+        function convertUrlPickerItem(temp) {
+            return {
+                id: temp.NodeId || 0,
+                name: temp.Title,
+                url: temp.Url,
+                isMedia: temp.Mode == 3,
+                target: temp.NewWindow ? '_blank' : '_self',
+            };
+        }
     });
