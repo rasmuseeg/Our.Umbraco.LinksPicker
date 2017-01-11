@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F53A6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DCFA7A7-C629-4193-86FB-4C129078C5FB}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
 		..\build\build.bat = ..\build\build.bat
 		..\build\Our.Umbraco.LinksPicker.nuspec = ..\build\Our.Umbraco.LinksPicker.nuspec
 		..\README.md = ..\README.md
