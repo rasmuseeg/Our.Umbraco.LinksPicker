@@ -1,9 +1,11 @@
 # Our.Umbraco.LinksPicker
-A Umbraco links PropertyEditor with type converter
+Multiple Url/Link PropertyEditor with type converter
+
+
 
 ## Installation
 
-NUGET is recommended:
+### NUGET:
 ```
 PM > Install-Package Our.Umbraco.Picture
 ```

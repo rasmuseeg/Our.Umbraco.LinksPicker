@@ -1,15 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.LinksPicker", "Our.Umbraco.LinksPicker\Our.Umbraco.LinksPicker.csproj", "{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{7228C2E1-B2AC-4DBC-82C5-14B5FEE7F142}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F53A6A8-38FF-47EC-9505-F738C40F893E}"
 	ProjectSection(SolutionItems) = preProject
-		..\build\BuildRelease.ps1 = ..\build\BuildRelease.ps1
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 		..\build\Our.Umbraco.LinksPicker.nuspec = ..\build\Our.Umbraco.LinksPicker.nuspec
-		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DCFA7A7-C629-4193-86FB-4C129078C5FB}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\build.bat = ..\build\build.bat
+		..\build\Our.Umbraco.LinksPicker.nuspec = ..\build\Our.Umbraco.LinksPicker.nuspec
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global

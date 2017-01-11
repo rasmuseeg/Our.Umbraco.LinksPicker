@@ -1,103 +1,66 @@
 ﻿using Newtonsoft.Json;
+using Our.Umbraco.LinksPicker.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
 using Umbraco.Web;
 
 namespace Our.Umbraco.LinksPicker.PropertyConverters {
-    // Include complete namespace because of Umbraco.ModelsBuilder
-    [PropertyValueType(typeof(Our.Umbraco.LinksPicker.Models.LinksPickerModel))]
+    [PropertyValueType(typeof(LinksPickerModel))]
     [PropertyValueCache(PropertyCacheValue.All, PropertyCacheLevel.Request)]
-    public class LinksPickerPropertyValueConverter : PropertyValueConverterBase {
-        public UmbracoHelper umbHelper;
-
-        public LinksPickerPropertyValueConverter() {
-            umbHelper = new UmbracoHelper(UmbracoContext.Current);
-        }
-
-        /// <summary>
-        /// Checks if this converter can convert the property editor and registers if it can.
-        /// </summary>
-        /// <param name="propertyType">
-        /// The published property type.
-        /// </param>
-        /// <returns>
-        /// The <see cref="bool"/>.
-        /// </returns>
-        public override bool IsConverter(PublishedPropertyType propertyType) {
+    public class LinksPickerPropertyValueConverter : IPropertyValueConverter {
+        public bool IsConverter(PublishedPropertyType propertyType) {
             return propertyType.PropertyEditorAlias == "Our.LinksPicker";
         }
 
-        /// <summary>
-        /// Convert the raw string into a nodeId integer array
-        /// </summary>
-        /// <param name="propertyType">
-        /// The published property type.
-        /// </param>
-        /// <param name="source">
-        /// The value of the property
-        /// </param>
-        /// <param name="preview">
-        /// The preview.
-        /// </param>
-        /// <returns>
-        /// The <see cref="object"/>.
-        /// </returns>
-        public override object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview) {
-            if (source == null || string.IsNullOrWhiteSpace(source as string)) return new Models.LinksPickerModel();
+        public object ConvertDataToSource(PublishedPropertyType propertyType, object source, bool preview) {
+			var attemptConvertInt = source.TryConvertTo<string>();
+			if (attemptConvertInt.Success)
+			{
+				return attemptConvertInt.Result;
+			}
 
-            string sourceString = source.ToString();
+			return null;
+		}
 
-            var links = JsonConvert.DeserializeObject<Models.LinksPickerModel>(sourceString);
+		public object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview) {
+			var fallback = new LinksPickerModel();
 
-            foreach (var link in links) {
-                // If we've got a id, then it's internal
-                if (link.Id.HasValue && link.Id.Value > 0) {
-                    try {
-                        link.Content = (
-                            link.IsMedia
-                            ? umbHelper.TypedMedia(link.Id)
-                            : umbHelper.TypedContent(link.Id)
-                        );
+			if (source == null || UmbracoContext.Current == null)
+				return fallback;
 
-                        link.Url = link.Content.Url;
-                    } catch (Exception e) {
-                        LogHelper.Error(this.GetType(), "Failed to map link with id: " + link.Id, e);
-                    }
-                }
-            }
+			var model = JsonConvert.DeserializeObject<Models.LinksPickerModel>(source.ToString());
 
-            return links;
-        }
+			foreach (var link in model)
+			{
+				// If we've got a id, then it's internal
+				if (link.Id.HasValue && link.Id.Value > 0)
+				{
+					try
+					{
+						var umbHelper = new UmbracoHelper(UmbracoContext.Current);
+						link.Content = (
+							link.IsMedia
+							? umbHelper.TypedMedia(link.Id)
+							: umbHelper.TypedContent(link.Id)
+						);
 
-        /// <summary>
-        /// Convert the source nodeId into a IEnumerable of IPublishedContent (or DynamicPublishedContent)
-        /// </summary>
-        /// <param name="propertyType">
-        /// The published property type.
-        /// </param>
-        /// <param name="source">
-        /// The value of the property
-        /// </param>
-        /// <param name="preview">
-        /// The preview.
-        /// </param>
-        /// <returns>
-        /// The <see cref="object"/>.
-        /// </returns>
-        public override object ConvertSourceToObject(PublishedPropertyType propertyType, object source, bool preview) {
-            if (source == null) return new Models.LinksPickerModel();
+						link.Url = link.Content.Url;
+					}
+					catch (Exception ex)
+					{
+						LogHelper.Error<LinksPickerPropertyValueConverter>(string.Format("Failed to map content with id: {0} for property {1} on content type {2}", link.Id, propertyType.PropertyEditorAlias, propertyType.ContentType.Alias), ex);
+					}
+				}
+			}
 
-            // source should come from ConvertDataToSource and be a string (or null) already
-            return source ?? new Models.LinksPickerModel();
-        }
+			return model;
+		}
 
-        public override object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview) {
-            // source should come from ConvertDataToSource and be a string (or null) already
-            throw new NotImplementedException();
+        public object ConvertSourceToXPath(PublishedPropertyType propertyType, object source, bool preview) {
+			return source.ToString();
         }
     }
 }

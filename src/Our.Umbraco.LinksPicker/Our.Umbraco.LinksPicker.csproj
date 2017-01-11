@@ -274,15 +274,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyConverters\LinksPickerPropertyConverter.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Plugins\LinksPicker\dialog\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="App_Plugins\LinksPicker\lang\da-DK.xml" />
+    <Content Include="App_Plugins\LinksPicker\lang\en-US.xml" />
     <Content Include="App_Plugins\LinksPicker\package.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
+    <None Include="Views\Web.config.uninstall.xdt" />
+    <None Include="Views\Web.config.install.xdt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\LinksPicker\linkspicker.controller.js">
