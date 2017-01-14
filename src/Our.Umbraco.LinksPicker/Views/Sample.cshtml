@@ -1,0 +1,10 @@
+﻿@model Our.Umbraco.Models.LinkPickerModel
+@{ 
+    if (Model.Any())
+    {
+        foreach(var link in Model)
+        {
+            <a href="@link.Url" target="@link.Target">@link.Name</a>
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "our.umbraco.linkspicker",
+  "version": "1.0.2",
+  "description": "Adds links picker property editor to umbraco backoffice",
+  "main": "index.js",
+  "url": "",
+  "readme": "Thank you for installing LinksPicker, help the development online. You will find the links on the right on our.umbraco.org",
+  "author": {
+    "name": "Rasmus E. Møller",
+    "email": "rasmuseeg@outlook.com",
+    "url": "http://reem.dk/"
+  },
+  "contributes": {
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-nuget": "~0.1.4",
+    "grunt-zip": "~0.17.0",
+    "grunt-umbraco-package": "1.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-dotnet-assembly-info":"~1.0.19"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasmuseeg/Our.Umbraco.LinksPicker.git"
+  },
+  "keywords": [
+    "links",
+    "pickers",
+    "url",
+    "multiple",
+    "package",
+    "umbraco",
+    "plugin",
+    "repository"
+  ],
+  "license": "MIT",
+  "licenseUrl": "https://opensource.org/licenses/MIT",
+  "bugs": {
+    "url": "https://github.com/rasmuseeg/Our.Umbraco.LinksPicker/issues"
+  },
+  "homepage": "https://our.umbraco.org/projects/developer-tools/links-picker/"
+}

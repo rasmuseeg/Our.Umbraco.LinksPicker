@@ -3,15 +3,14 @@
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>rasmuseeg</owners>
+    <title>$title$</title>
+    <authors>Rasmus E. Møller</authors>
+    <owners>Rasmus E. Møller</owners>
     <licenseUrl>https://mit-license.org/</licenseUrl>
     <projectUrl>https://github.com/rasmuseeg/Our.Umbraco.LinksPicker</projectUrl>
-    <iconUrl>http://www.datagraf.dk/content/favicon/favicon-96x96.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/rasmuseeg/Our.Umbraco.LinksPicker/master/src/assets/icon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>Minor changes</releaseNotes>
-    <copyright>$copyright$</copyright>
+    <description>Adds links picker property editor to umbraco backoffice</description>
     <tags>umbraco plugin package link related links multiple url files media pdf docs documents picker</tags>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.2.4" />
