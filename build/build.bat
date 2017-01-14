@@ -1,1 +1,0 @@
-nuget pack ..\src\Our.Umbraco.LinksPicker\Our.Umbraco.LinksPicker.csproj -properties Configuration=Release
