@@ -11,6 +11,7 @@
 
     // get the root path of the project
     var projectRoot = 'src/' + pkg.name + '/';
+    var webProjectRoot = 'src/' + pkg.name + '.Web/';
 
     // Load information about the assembly
     var assemblyinfo = {
@@ -64,6 +65,27 @@
                         dest: 'temp/'
                     }
                 ]
+            },
+            debug: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: projectRoot + 'bin/Debug/',
+                        src: [
+                            pkg.name + '.dll',
+                            pkg.name + '.xml'
+                        ],
+                        dest: webProjectRoot + 'bin/'
+                    },
+                    {
+                        expand: true,
+                        cwd: projectRoot + 'bin/Debug/',
+                        src: [
+                            'App_Plugins/**',
+                        ],
+                        dest: webProjectRoot
+                    }
+                ]
             }
         },
         assemblyinfo: assemblyinfo,
@@ -101,11 +123,11 @@
         }
     });
 
-   
-
-    grunt.registerTask("nuget", ['assemblyinfo', 'copy', 'nugetpack']);
-    grunt.registerTask("github", ['clean', 'copy', 'zip:github']);
-    grunt.registerTask("umbraco", ['clean', 'copy', 'umbracoPackage']);
+    grunt.registerTask("nuget", ['assemblyinfo', 'copy:release', 'nugetpack']);
+    grunt.registerTask("github", ['clean', 'copy:release', 'zip:github']);
+    grunt.registerTask("umbraco", ['clean', 'copy:release', 'umbracoPackage']);
 
     grunt.registerTask('default', ['nuget', 'github', 'umbraco']);
+
+    grunt.registerTask("debug", ['copy:debug']);
 }

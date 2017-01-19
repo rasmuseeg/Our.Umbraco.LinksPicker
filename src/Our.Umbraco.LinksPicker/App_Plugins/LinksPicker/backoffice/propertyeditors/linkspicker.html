@@ -1,0 +1,41 @@
+<div class="umb-linkspicker" ng-controller="Our.LinksPickerEditor as vm">
+    <div class="umb-linkspicker-list"
+         ui-sortable="{ handle: '> .handle', connectWith: 'linkspicker-item' }"
+         ng-model="model.value">
+        <div class="lp-item" ng-repeat="link in model.value">
+            <div ng-if="link.id > 0" class="lp-object handle" ng-class="{
+                 'not-published': link.published,
+                 'has-unpublished-version': link.hasPublishedVersion
+                 }">
+                <i class="icon {{link.icon}}"></i>
+            </div>
+
+            <div class="lp-object" ng-if="link.id <= 0">
+                <i class="icon icon-link"></i>
+            </div>
+
+            <div class="lp-body" ng-click="edit($index)">
+                <div class="lp-item-name" ng-bind="link.name"></div>
+                <div class="lp-item-description">
+                    <span ng-switch="link.target">
+                        <span ng-switch-when="_self"></span>
+                        <span ng-switch-when="_blank" class="icon icon-multiple-windows"></span>
+                    </span>
+                    <span ng-bind="link.url"></span>
+                </div>
+                <a href="#" class="lp-delete" prevent-default ng-click="remove($index)"><localize key="general_remove">Remove</localize></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="add-link" ng-if="showAdd()" ng-click="add()">
+        <localize key="general_add">Add</localize>
+    </div>
+
+    <umb-overlay ng-if="vm.overlay.show"
+                 model="vm.overlay"
+                 view="vm.overlay.view"
+                 position="right">
+    </umb-overlay>
+</div>

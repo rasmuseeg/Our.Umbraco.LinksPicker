@@ -1,0 +1,72 @@
+﻿.umb-linkspicker {
+}
+
+.umb-linkspicker-list {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 0;
+
+  .lp-item {
+    position: relative;
+    background-color: #f8f8f8;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    padding: 5px;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 1.1;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid #2e8aea;
+    }
+  }
+
+  .lp-object {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    text-align: center;
+    margin-right: 10px;
+    cursor: move;
+  }
+
+  .lp-item-name {
+    font-weight: bold;
+  }
+
+  .lp-item-description {
+    color: #7f7f7f;
+    font-size: 12px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .lp-delete {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+  }
+}
+
+.umb-linkspicker .add-link {
+  color: #2e8aea;
+  display: block;
+  background-color: transparent;
+  text-align: center;
+  border: 2px dashed #d9d9d9;
+  cursor: pointer;
+  padding: 3px;
+  display: block;
+  text-align: center;
+
+  &:hover {
+    border: 2px dashed #2e8aea;
+  }
+}

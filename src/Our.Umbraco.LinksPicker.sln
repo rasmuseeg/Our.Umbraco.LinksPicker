@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.LinksPicker", "Our.Umbraco.LinksPicker\Our.Umbraco.LinksPicker.csproj", "{626A0D45-AD34-4B51-BE1F-DA42931EFB7E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DCFA7A7-C629-4193-86FB-4C129078C5FB}"
 	ProjectSection(SolutionItems) = preProject
 		..\build.bat = ..\build.bat
@@ -14,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.LinksPicker.Web", "Our.Umbraco.LinksPicker.Web\Our.Umbraco.LinksPicker.Web.csproj", "{781BDCDA-3009-40DA-AAB7-FA35C70CE396}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Our.Umbraco.LinksPicker", "Our.Umbraco.LinksPicker\Our.Umbraco.LinksPicker.csproj", "{781BDCDA-3009-40DA-AAB7-FA35C70CE396}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

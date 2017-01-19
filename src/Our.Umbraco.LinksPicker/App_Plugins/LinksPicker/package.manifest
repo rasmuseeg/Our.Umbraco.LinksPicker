@@ -6,25 +6,31 @@
       "alias": "Our.LinksPicker",
       "group": "Pickers",
       "editor": {
-        "view": "~/App_Plugins/LinksPicker/LinksPicker.html",
+        "view": "~/App_Plugins/LinksPicker/backoffice/propertyeditors/LinksPicker.html",
         "valueType": "JSON"
       },
       "prevalues": {
         "fields": [
           {
+            "label": "Minimum number of items",
+            "description": "",
+            "key": "min",
+            "view": "number"
+          },
+          {
             "label": "Maximum number of items",
             "description": "",
             "key": "max",
-            "view": "textstring"
+            "view": "number"
           }
         ]
       }
     }
   ],
   "javascript": [
-    "~/App_Plugins/LinksPicker/LinksPicker.controller.js"
+    "~/App_Plugins/LinksPicker/backoffice/propertyeditors/linkspicker.controller.js"
   ],
   "css": [
-    "~/App_Plugins/LinksPicker/LinksPicker.css"
+    "~/App_Plugins/LinksPicker/css/linkspicker.css"
   ]
 }
