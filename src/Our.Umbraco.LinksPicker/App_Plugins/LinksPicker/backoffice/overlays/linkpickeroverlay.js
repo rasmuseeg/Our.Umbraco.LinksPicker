@@ -12,4 +12,3 @@ var Our;
         angular.module("umbraco").controller("Our.LinksPickerDialog", LinksPickerDialog);
     })(LinksPicker = Our.LinksPicker || (Our.LinksPicker = {}));
 })(Our || (Our = {}));
-//# sourceMappingURL=linkpickeroverlay.js.map

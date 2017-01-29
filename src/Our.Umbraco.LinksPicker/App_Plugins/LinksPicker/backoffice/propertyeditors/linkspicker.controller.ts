@@ -38,7 +38,7 @@ namespace Our.LinksPicker {
     }
 
     class LinksPickerEditor {
-        static $inject: string[] = ["$scope", "mediaResource", "contentResource"];
+        static $inject: string[] = ["$scope", "mediaResource", "contentResource", "localizationService", "mediaHelper"];
 
          /**
          * Defaults for umb-overlay directive
@@ -50,7 +50,9 @@ namespace Our.LinksPicker {
         constructor(
             private $scope: ILinksPickerScope,
             private mediaResource: umb.resources.IMediaResource,
-            private contentResource: umb.resources.IContentResource) {
+            private contentResource: umb.resources.IContentResource,
+            private localizationService: umb.services.ILocalizationService,
+            private mediaHelper: umb.services.IMediaHelper) {
 
             /**
              * Converts multiple uComponent UrlPicker item. URL, Content, Media
@@ -176,15 +178,24 @@ namespace Our.LinksPicker {
             }
         }
         
-
         /**
          * Save content on item
          */
-        mapContent(item, content) {
-            item.published = content.published;
-            item.hasPublishedVersion = content.hasPublishedVersion;
-            item.url = content.urls[0];
-            item.icon = content.icon;
+        mapContent(item, data) {
+            item.published = data.published;
+            item.hasPublishedVersion = data.hasPublishedVersion;
+            item.trashed = data.trashed;
+            item.icon = data.icon;
+            if (item.isMedia) {
+                item.url = this.mediaHelper.resolveFile(<umb.services.IMediaEntity>data, false);
+            } else {
+                item.url = data.urls[0] || "";
+            }
+            if (data.trashed) {
+                this.localizationService.localize("linkspicker_trashedMessage").then((s) => {
+                    item.url = s;
+                });
+            }
         }
 
         /**
@@ -201,6 +212,7 @@ namespace Our.LinksPicker {
          * Converts UrlPickerItem to LinkPickerModelItem
          */
         convertUrlPickerItem(temp) {
+            debugger;
             return {
                 id: temp.NodeId || 0,
                 name: temp.Title,

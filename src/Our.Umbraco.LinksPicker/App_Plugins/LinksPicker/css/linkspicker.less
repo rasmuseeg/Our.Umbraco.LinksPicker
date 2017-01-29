@@ -1,10 +1,11 @@
 ﻿.umb-linkspicker {
+  max-width: 500px;
+  min-width: 66%;
 }
 
 .umb-linkspicker-list {
   list-style: none;
   padding: 0;
-  max-width: 500px;
   margin: 0;
 
   .lp-item {
@@ -68,5 +69,28 @@
 
   &:hover {
     border: 2px dashed #2e8aea;
+  }
+}
+
+.lp-item{
+
+  &.not-published{
+
+  }
+
+  &.published{
+
+  }
+
+  &.trashed:hover,
+  &.trashed{
+    border-color: #ff0000;
+  }
+
+  &:before{
+    cursor: move;
+    left: 13px;
+    right: 8px;
+    top: 13px;
   }
 }

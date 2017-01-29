@@ -2,12 +2,14 @@
     <div class="umb-linkspicker-list"
          ui-sortable="{ handle: '> .handle', connectWith: 'linkspicker-item' }"
          ng-model="model.value">
-        <div class="lp-item" ng-repeat="link in model.value">
-            <div ng-if="link.id > 0" class="lp-object handle" ng-class="{
-                 'not-published': link.published,
-                 'has-unpublished-version': link.hasPublishedVersion
-                 }">
-                <i class="icon {{link.icon}}"></i>
+        <div class="lp-item" ng-repeat="link in model.value"  
+             ng-class="{
+                'not-published': !link.published,
+                'has-unpublished-version': link.hasPublishedVersion,
+                'trashed': link.trashed
+                }">
+            <div ng-if="link.id > 0" class="lp-object handle">
+                <i class="icon" ng-class="link.icon"></i>
             </div>
 
             <div class="lp-object" ng-if="link.id <= 0">
@@ -23,7 +25,7 @@
                     </span>
                     <span ng-bind="link.url"></span>
                 </div>
-                <a href="#" class="lp-delete" prevent-default ng-click="remove($index)"><localize key="general_remove">Remove</localize></a>
+                <a href="#" class="lp-delete" prevent-default ng-click="remove($index)"><localize key="linkspicker_remove">Remove</localize></a>
             </div>
 
         </div>

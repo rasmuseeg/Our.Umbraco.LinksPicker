@@ -4,7 +4,8 @@
     <name>The Umbraco community</name>
     <link>http://our.umbraco.org/documentation/Extending-Umbraco/Language-Files</link>
   </creator>
-  <area alias="general">
+  <area alias="linkspicker">
     <key alias="remove">Remove</key>
+    <key alias="trashedMessage">This item has been trashed.</key>
   </area>
 </language>

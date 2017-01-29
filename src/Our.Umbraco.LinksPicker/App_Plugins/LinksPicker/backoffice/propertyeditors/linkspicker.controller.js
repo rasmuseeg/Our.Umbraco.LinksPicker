@@ -5,11 +5,13 @@ var Our;
     (function (LinksPicker) {
         "strict";
         var LinksPickerEditor = (function () {
-            function LinksPickerEditor($scope, mediaResource, contentResource) {
+            function LinksPickerEditor($scope, mediaResource, contentResource, localizationService, mediaHelper) {
                 var _this = this;
                 this.$scope = $scope;
                 this.mediaResource = mediaResource;
                 this.contentResource = contentResource;
+                this.localizationService = localizationService;
+                this.mediaHelper = mediaHelper;
                 /**
                 * Defaults for umb-overlay directive
                 */
@@ -134,11 +136,22 @@ var Our;
             /**
              * Save content on item
              */
-            LinksPickerEditor.prototype.mapContent = function (item, content) {
-                item.published = content.published;
-                item.hasPublishedVersion = content.hasPublishedVersion;
-                item.url = content.urls[0];
-                item.icon = content.icon;
+            LinksPickerEditor.prototype.mapContent = function (item, data) {
+                item.published = data.published;
+                item.hasPublishedVersion = data.hasPublishedVersion;
+                item.trashed = data.trashed;
+                item.icon = data.icon;
+                if (item.isMedia) {
+                    item.url = this.mediaHelper.resolveFile(data, false);
+                }
+                else {
+                    item.url = data.urls[0] || "";
+                }
+                if (data.trashed) {
+                    this.localizationService.localize("linkspicker_trashedMessage").then(function (s) {
+                        item.url = s;
+                    });
+                }
             };
             /**
              * Validates if current object is of type UrlPickerItem
@@ -153,6 +166,7 @@ var Our;
              * Converts UrlPickerItem to LinkPickerModelItem
              */
             LinksPickerEditor.prototype.convertUrlPickerItem = function (temp) {
+                debugger;
                 return {
                     id: temp.NodeId || 0,
                     name: temp.Title,
@@ -163,8 +177,7 @@ var Our;
             };
             return LinksPickerEditor;
         }());
-        LinksPickerEditor.$inject = ["$scope", "mediaResource", "contentResource"];
+        LinksPickerEditor.$inject = ["$scope", "mediaResource", "contentResource", "localizationService", "mediaHelper"];
         angular.module("umbraco").controller("Our.LinksPickerEditor", LinksPickerEditor);
     })(LinksPicker = Our.LinksPicker || (Our.LinksPicker = {}));
 })(Our || (Our = {}));
-//# sourceMappingURL=linkspicker.controller.js.map

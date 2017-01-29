@@ -5,7 +5,7 @@
     <version>$version$</version>
     <title>$title$</title>
     <authors>Rasmus E. Møller</authors>
-    <owners>Rasmus E. Møller</owners>
+    <owners>rasmuseeg</owners>
     <licenseUrl>https://mit-license.org/</licenseUrl>
     <projectUrl>https://github.com/rasmuseeg/Our.Umbraco.LinksPicker</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/rasmuseeg/Our.Umbraco.LinksPicker/master/src/assets/icon.png</iconUrl>
@@ -13,7 +13,7 @@
     <description>Adds links picker property editor to umbraco backoffice</description>
     <tags>umbraco plugin package link related links multiple url files media pdf docs documents picker</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="7.2.4" />
+      <dependency id="UmbracoCms.Core" version="7.3.0" />
     </dependencies>
   </metadata>
 </package>
